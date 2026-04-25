@@ -1,0 +1,29 @@
+qid,history,query,expected_rewrite,item_name,question_type,difficulty,source_doc,notes
+QDOC001,,vAD 是个什么产品，主要是解决什么问题的？,深信服应用交付虚拟化产品 vAD 是什么产品，主要解决什么问题？,深信服 vAD,retrieval,easy,doc/深信服应用交付虚拟化产品 vAD技术白皮书.pdf,基于概述
+QDOC002,,vAD 能部署在哪些虚拟化平台上？,深信服 vAD 支持部署在哪些虚拟化平台上？,深信服 vAD,retrieval,easy,doc/深信服应用交付虚拟化产品 vAD技术白皮书.pdf,部署兼容性
+QDOC003,,vAD 在 VMware 上部署至少要预留多大硬盘空间？,深信服 vAD 在 VMware 平台部署至少需要预留多大硬盘空间？,深信服 vAD,retrieval,medium,doc/深信服应用交付虚拟化产品 vAD技术白皮书.pdf,细节参数
+QDOC004,"刚才说的是 vAD",那平时怎么管理它？,深信服 vAD 平时如何进行配置和管理？,深信服 vAD,multi_turn,medium,doc/深信服应用交付虚拟化产品 vAD技术白皮书.pdf,多轮追问
+QDOC005,,多链路负载均衡在 vAD 里主要解决什么问题？,深信服 vAD 的多链路负载均衡主要解决什么问题？,深信服 vAD,retrieval,medium,doc/深信服应用交付虚拟化产品 vAD技术白皮书.pdf,能力价值
+QDOC006,,出站流量负载均衡是怎么工作的？,深信服 vAD 的出站流量负载均衡如何工作？,深信服 vAD,retrieval,hard,doc/深信服应用交付虚拟化产品 vAD技术白皮书.pdf,流程类问题
+QDOC007,,入站流量负载均衡靠什么机制实现？,深信服 vAD 的入站流量负载均衡依靠什么机制实现？,深信服 vAD,retrieval,medium,doc/深信服应用交付虚拟化产品 vAD技术白皮书.pdf,DNS 调度
+QDOC008,,服务器负载均衡对外是怎么暴露服务的？,深信服 vAD 的服务器负载均衡对外如何发布服务？,深信服 vAD,retrieval,medium,doc/深信服应用交付虚拟化产品 vAD技术白皮书.pdf,虚拟服务 IP
+QDOC009,,TCP 连接复用的作用是什么？,深信服 vAD 的 TCP 连接复用有什么作用？,深信服 vAD,retrieval,medium,doc/深信服应用交付虚拟化产品 vAD技术白皮书.pdf,性能优化
+QDOC010,,SSL 卸载为什么能提升性能？,深信服 vAD 的 SSL 卸载为什么能提升访问性能？,深信服 vAD,retrieval,medium,doc/深信服应用交付虚拟化产品 vAD技术白皮书.pdf,性能优化
+QDOC011,,这个云安全运维平台主要拿来干什么？,H3C SecCloud 云安全运维管理平台主要用于什么？,H3C SecCloud,retrieval,easy,doc/H3C 云安全运维管理平台 安装指导(E1306)-5W100-整本手册.pdf,平台功能
+QDOC012,,它有哪些典型应用场景？,H3C SecCloud 云安全运维管理平台有哪些典型应用场景？,H3C SecCloud,retrieval,easy,doc/H3C 云安全运维管理平台 安装指导(E1306)-5W100-整本手册.pdf,应用场景
+QDOC013,,这个平台支持哪几种部署方式？,H3C SecCloud 云安全运维管理平台支持哪几种部署方式？,H3C SecCloud,retrieval,easy,doc/H3C 云安全运维管理平台 安装指导(E1306)-5W100-整本手册.pdf,单机/集群
+QDOC014,,单机版最多能管多少台设备？,H3C SecCloud 云安全运维管理平台单机版最高可纳管多少台设备？,H3C SecCloud,retrieval,medium,doc/H3C 云安全运维管理平台 安装指导(E1306)-5W100-整本手册.pdf,规模上限
+QDOC015,,单机部署完之后怎么验证是不是成功了？,H3C SecCloud 云安全运维管理平台单机部署完成后如何验证部署成功？,H3C SecCloud,retrieval,medium,doc/H3C 云安全运维管理平台 安装指导(E1306)-5W100-整本手册.pdf,验证步骤
+QDOC016,,集群部署推荐什么节点结构？,H3C SecCloud 云安全运维管理平台集群部署推荐什么节点结构？,H3C SecCloud,retrieval,medium,doc/H3C 云安全运维管理平台 安装指导(E1306)-5W100-整本手册.pdf,集群拓扑
+QDOC017,,集群部署执行的命令是什么？,H3C SecCloud 云安全运维管理平台集群部署执行什么命令？,H3C SecCloud,retrieval,hard,doc/H3C 云安全运维管理平台 安装指导(E1306)-5W100-整本手册.pdf,命令细节
+QDOC018,,访问这个平台推荐用什么浏览器，默认账号密码是什么？,H3C SecCloud 云安全运维管理平台推荐使用什么浏览器，默认登录地址和账号密码是什么？,H3C SecCloud,retrieval,medium,doc/H3C 云安全运维管理平台 安装指导(E1306)-5W100-整本手册.pdf,浏览器与登录
+QDOC019,,S1020V 到底是什么？,H3C S1020V 是什么产品？,H3C S1020V,retrieval,easy,doc/H3C S1020V虚拟交换机技术白皮书-5W100-整本手册.pdf,产品定义
+QDOC020,,S1020V 的核心功能是什么？,H3C S1020V 的核心功能是什么？,H3C S1020V,retrieval,medium,doc/H3C S1020V虚拟交换机技术白皮书-5W100-整本手册.pdf,产品功能
+QDOC021,,S1020V 的桥模型怎么分类？,H3C S1020V 的桥模型如何分类？,H3C S1020V,retrieval,medium,doc/H3C S1020V虚拟交换机技术白皮书-5W100-整本手册.pdf,桥分类
+QDOC022,,内核桥和 DPDK 桥分别对应什么模型？,H3C S1020V 的内核桥和 DPDK 桥分别对应什么模型？,H3C S1020V,retrieval,medium,doc/H3C S1020V虚拟交换机技术白皮书-5W100-整本手册.pdf,说明项
+QDOC023,,单桥模型下虚机入方向流量怎么走？,H3C S1020V 单桥模型下虚机入方向流量的转发路径是什么？,H3C S1020V,retrieval,hard,doc/H3C S1020V虚拟交换机技术白皮书-5W100-整本手册.pdf,流程题
+QDOC024,,双桥模型最大的结构特点是什么？,H3C S1020V 双桥模型的主要结构特点是什么？,H3C S1020V,retrieval,hard,doc/H3C S1020V虚拟交换机技术白皮书-5W100-整本手册.pdf,双桥特点
+QDOC025,,S1020V 支持哪些特性？,H3C S1020V 支持哪些特性？,H3C S1020V,retrieval,medium,doc/H3C S1020V虚拟交换机技术白皮书-5W100-整本手册.pdf,特性列表
+QDOC026,,DPDK 桥支持哪些网卡？,H3C S1020V 的 DPDK 桥支持哪些网卡？,H3C S1020V,retrieval,medium,doc/H3C S1020V虚拟交换机技术白皮书-5W100-整本手册.pdf,兼容性
+QDOC027,,S1020V 典型用在什么场景？,H3C S1020V 的典型应用场景是什么？,H3C S1020V,retrieval,medium,doc/H3C S1020V虚拟交换机技术白皮书-5W100-整本手册.pdf,应用场景
+QDOC028,,为什么会有智能网卡这个场景？,H3C S1020V 为什么会引入智能网卡场景？,H3C S1020V,retrieval,medium,doc/H3C S1020V虚拟交换机技术白皮书-5W100-整本手册.pdf,背景原因

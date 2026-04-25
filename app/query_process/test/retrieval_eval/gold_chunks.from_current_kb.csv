@@ -1,0 +1,29 @@
+qid,chunk_id,relevance,reason
+QDOC001,ae4bb064-06d2-4e7b-85ab-4bb501986dad#10,1,直接回答产品定义和价值。
+QDOC002,ae4bb064-06d2-4e7b-85ab-4bb501986dad#11,1,直接给出兼容平台。
+QDOC003,ae4bb064-06d2-4e7b-85ab-4bb501986dad#11,1,直接给出部署所需硬盘空间。
+QDOC004,ae4bb064-06d2-4e7b-85ab-4bb501986dad#12,1,直接回答管理方式。
+QDOC005,ae4bb064-06d2-4e7b-85ab-4bb501986dad#15,1,直接回答能力价值。
+QDOC006,ae4bb064-06d2-4e7b-85ab-4bb501986dad#16,1,直接回答出站流量工作机制。
+QDOC007,ae4bb064-06d2-4e7b-85ab-4bb501986dad#19,1,直接回答入站机制。
+QDOC008,ae4bb064-06d2-4e7b-85ab-4bb501986dad#22,1,直接回答服务暴露方式。
+QDOC009,ae4bb064-06d2-4e7b-85ab-4bb501986dad#33,1,直接回答 TCP 连接复用作用。
+QDOC010,ae4bb064-06d2-4e7b-85ab-4bb501986dad#36,1,直接回答 SSL 卸载价值。
+QDOC011,1df8dfde-855b-4716-a9e5-8e4a3d8e1294#7,1,直接回答平台功能。
+QDOC012,1df8dfde-855b-4716-a9e5-8e4a3d8e1294#13,1,直接列举应用场景。
+QDOC013,1df8dfde-855b-4716-a9e5-8e4a3d8e1294#20,1,直接回答部署方式。
+QDOC014,1df8dfde-855b-4716-a9e5-8e4a3d8e1294#20,1,直接给出规模上限。
+QDOC015,1df8dfde-855b-4716-a9e5-8e4a3d8e1294#29,1,直接回答验证步骤。
+QDOC016,1df8dfde-855b-4716-a9e5-8e4a3d8e1294#30,1,直接回答推荐节点结构。
+QDOC017,1df8dfde-855b-4716-a9e5-8e4a3d8e1294#34,1,直接给出集群部署命令。
+QDOC018,1df8dfde-855b-4716-a9e5-8e4a3d8e1294#38,1,直接回答浏览器要求和默认登录信息。
+QDOC019,5e41ddfd-8f0a-4a7f-9482-eef09af45b4b#11,1,直接回答产品定义。
+QDOC020,5e41ddfd-8f0a-4a7f-9482-eef09af45b4b#12,1,直接回答产品功能。
+QDOC021,5e41ddfd-8f0a-4a7f-9482-eef09af45b4b#18,1,直接回答桥分类。
+QDOC022,5e41ddfd-8f0a-4a7f-9482-eef09af45b4b#19,1,直接给出对应关系。
+QDOC023,5e41ddfd-8f0a-4a7f-9482-eef09af45b4b#21,1,直接描述单桥入方向路径。
+QDOC024,5e41ddfd-8f0a-4a7f-9482-eef09af45b4b#22,1,直接回答双桥模型的核心结构特点。
+QDOC025,5e41ddfd-8f0a-4a7f-9482-eef09af45b4b#24,1,直接列出支持特性。
+QDOC026,5e41ddfd-8f0a-4a7f-9482-eef09af45b4b#25,1,直接回答支持网卡。
+QDOC027,5e41ddfd-8f0a-4a7f-9482-eef09af45b4b#27,1,直接回答典型应用场景。
+QDOC028,5e41ddfd-8f0a-4a7f-9482-eef09af45b4b#35,1,直接回答智能网卡场景的产生背景。

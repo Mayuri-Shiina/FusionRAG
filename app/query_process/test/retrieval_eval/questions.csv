@@ -1,0 +1,7 @@
+qid,query,item_name,question_type,difficulty,source_doc,notes
+Q001,HAK 180 烫金机多少钱？,HAK 180,precise,easy,产品报价说明书,精确价格查询
+Q002,这个机器怎么调压力？,HAK 180,colloquial,medium,操作手册,依赖实体对齐与术语改写
+Q003,连续工作多久需要停机检查？,HAK 180,long_tail,hard,维护手册,长尾限制条件
+Q004,它支持哪些材质？,HAK 180,multi_turn,medium,产品规格书,依赖上下文补全主语
+Q005,温度报警之后先看什么？,HAK 180,troubleshooting,hard,故障排查手册,故障排查类问法
+

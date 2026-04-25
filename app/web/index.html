@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FusionRAG Knowledge Studio</title>
+  <link rel="stylesheet" href="/static/style.css?v=20260425-3" />
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+  <div id="app" class="shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">R</div>
+        <div>
+          <h1>FusionRAG</h1>
+          <p>Knowledge Studio</p>
+        </div>
+      </div>
+
+      <nav v-if="isAuthenticated" class="nav">
+        <button :class="{active: view === 'chat'}" @click="showChat">知识问答</button>
+        <button v-if="isAdmin" :class="{active: view === 'documents'}" @click="showDocuments">文档管理</button>
+        <button :class="{active: view === 'sessions'}" @click="showSessions">历史会话</button>
+      </nav>
+
+      <div v-if="isAuthenticated" class="account">
+        <div class="account-name">{{ currentUser.username }}</div>
+        <div class="account-role">{{ currentUser.role }}</div>
+        <button class="ghost danger" @click="logout">退出登录</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <section v-if="!isAuthenticated" class="auth-card">
+        <h2>{{ authMode === 'login' ? '登录' : '注册' }}</h2>
+        <p>管理员可以导入知识库文档，普通用户可以进行知识问答。</p>
+        <input v-model="authForm.username" placeholder="用户名" />
+        <input v-model="authForm.password" type="password" placeholder="密码" />
+        <select v-if="authMode === 'register'" v-model="authForm.role">
+          <option value="user">普通用户</option>
+          <option value="admin">管理员</option>
+        </select>
+        <input v-if="authMode === 'register' && authForm.role === 'admin'" v-model="authForm.admin_code" type="password" placeholder="管理员邀请码" />
+        <button class="primary" :disabled="authLoading" @click="submitAuth">{{ authLoading ? '提交中...' : '提交' }}</button>
+        <button class="link" @click="authMode = authMode === 'login' ? 'register' : 'login'">
+          {{ authMode === 'login' ? '没有账号，去注册' : '已有账号，去登录' }}
+        </button>
+      </section>
+
+      <section v-if="isAuthenticated && view === 'documents'" class="panel">
+        <header class="panel-header">
+          <div>
+            <h2>文档管理</h2>
+            <p>项目一主干 MVP 支持 PDF / Markdown。PDF 可选择 MinerU 增强解析或快速文本解析。</p>
+          </div>
+          <button class="secondary" @click="loadDocuments">刷新列表</button>
+        </header>
+
+        <div class="upload-box">
+          <input ref="fileInput" type="file" accept=".pdf,.md" @change="onFileSelected" />
+          <div class="mode-row">
+            <label><input type="radio" value="auto" v-model="parseMode" /> 自动识别</label>
+            <label><input type="radio" value="advanced" v-model="parseMode" /> 增强解析 MinerU</label>
+            <label><input type="radio" value="fast" v-model="parseMode" /> 快速解析文本 PDF</label>
+          </div>
+          <button class="primary" :disabled="!selectedFile || uploading" @click="uploadDocument">
+            {{ uploading ? '上传处理中...' : '开始上传' }}
+          </button>
+        </div>
+
+        <div v-if="uploadJob.task_id" class="job-card">
+          <div class="job-title">{{ uploadJob.message || '导入进度' }}</div>
+          <div class="job-status">状态：{{ uploadJob.status || 'pending' }}</div>
+          <div class="steps">
+            <span v-for="item in uploadJob.done_list" :key="item" class="step done">{{ item }}</span>
+            <span v-for="item in uploadJob.running_list" :key="item" class="step running">{{ item }}</span>
+          </div>
+        </div>
+
+        <div class="document-list">
+          <article v-for="doc in documents" :key="doc.filename" class="document-item">
+            <div>
+              <h3>{{ doc.filename }}</h3>
+              <p>{{ doc.item_name || '未记录主体名称' }} · {{ doc.chunk_count }} 个片段</p>
+            </div>
+            <button class="danger-action" :disabled="deletingDocuments[doc.filename]" @click="deleteDocument(doc.filename)">
+              {{ deletingDocuments[doc.filename] ? '删除中...' : '删除' }}
+            </button>
+          </article>
+          <div v-if="!documents.length" class="empty">暂无文档</div>
+        </div>
+      </section>
+
+      <section v-if="isAuthenticated && view === 'sessions'" class="panel">
+        <header class="panel-header">
+          <div>
+            <h2>历史会话</h2>
+            <p>按当前登录用户隔离展示。</p>
+          </div>
+          <button class="secondary" @click="loadSessions">刷新</button>
+        </header>
+        <article
+          v-for="session in sessions"
+          :key="session.session_id"
+          class="session-item"
+          role="button"
+          tabindex="0"
+          @click="loadSession(session.session_id)"
+          @keydown.enter.prevent="loadSession(session.session_id)"
+        >
+          <div class="session-main">
+            <strong>{{ session.session_id }}</strong>
+            <span>{{ session.message_count }} 条消息</span>
+          </div>
+          <div class="session-actions">
+            <button class="danger-action subtle compact" @click.stop="deleteSession(session.session_id)">删除</button>
+          </div>
+        </article>
+        <div v-if="!sessions.length" class="empty">暂无历史会话</div>
+      </section>
+
+      <section v-show="isAuthenticated && view === 'chat'" class="chat">
+        <header class="chat-header">
+          <div>
+            <h2>知识库问答</h2>
+            <p>基于项目一 RAG 主链路：MinerU、多模态图片摘要、BGE-M3、Milvus、HyDE、RRF、Rerank。</p>
+          </div>
+          <button class="secondary" @click="newChat">新建会话</button>
+        </header>
+
+        <div ref="chatScroll" class="messages">
+          <div v-if="!messages.length" class="empty">开始提问知识库中的内容。</div>
+          <article v-for="(msg, idx) in messages" :key="idx" :class="['message', msg.isUser ? 'user' : 'assistant']">
+            <div class="avatar">{{ msg.isUser ? '我' : 'AI' }}</div>
+            <div class="message-body">
+              <div class="bubble" v-html="msg.isUser ? escapeHtml(msg.text) : formatAssistantText(msg.text || '')"></div>
+            <details v-if="!msg.isUser && msg.steps && msg.steps.length" class="trace">
+              <summary>处理过程</summary>
+              <div v-for="(step, sidx) in msg.steps" :key="sidx" class="trace-line">{{ step.label }} {{ step.detail ? '· ' + step.detail : '' }}</div>
+            </details>
+            <div v-if="!msg.isUser && msg.imageUrls && msg.imageUrls.length" class="images">
+              <a v-for="url in msg.imageUrls" :key="url" :href="imageSrc(url)" target="_blank" class="image-card">
+                <img :src="imageSrc(url)" :alt="imageName(url)" loading="lazy" />
+                <span>{{ imageName(url) }}</span>
+              </a>
+            </div>
+            </div>
+          </article>
+        </div>
+
+        <footer class="composer">
+          <textarea v-model="userInput" :disabled="loading" placeholder="输入问题，Enter 发送，Shift+Enter 换行" @keydown="handleKeydown"></textarea>
+          <button class="primary" :disabled="loading || !userInput.trim()" @click="sendMessage">{{ loading ? '回答中...' : '发送' }}</button>
+        </footer>
+      </section>
+    </main>
+  </div>
+  <script src="/static/script.js?v=20260425-3"></script>
+</body>
+</html>
