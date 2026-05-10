@@ -1,13 +1,10 @@
-# 导入核心依赖（和其他配置类共用，只需导入一次）
 from dataclasses import dataclass
 import os
 from dotenv import load_dotenv
 
-# 提前加载.env配置文件（全局执行一次即可，无需重复写）
 load_dotenv()
 
 # ===================== 其他配置类（LLM/Embedding）可放在上方，保持原有代码不变 =====================
-# ... 你的LLMConfig、EmbeddingConfig代码 ...
 
 # 定义Milvus向量数据库配置类
 @dataclass

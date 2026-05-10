@@ -1,4 +1,4 @@
-# 加载环境变量：从 .env 文件读取配置（如Milvus地址、BGE模型路径等）
+# 加载环境变量
 from dotenv import load_dotenv
 # 导入LangGraph核心依赖：StateGraph(状态图)、START/END(内置起始/结束节点常量)
 from langgraph.graph import StateGraph, END, START

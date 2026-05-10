@@ -218,25 +218,3 @@ def get_recent_messages(session_id: str, limit: int = 10) -> List[Dict[str, Any]
         logging.error(f"Error getting recent messages: {e}")
         # 异常时返回空列表，避免上层处理None报错
         return []
-
-
-# 主程序入口：仅当直接运行该脚本时执行，用于简单的功能测试
-if __name__ == "__main__":
-    # 简单测试代码：验证数据库的写入和查询功能是否正常
-    # 测试会话ID，用于标识测试的对话记录
-    sid = "000015_hybrid"
-    # 1. 写入用户消息（手动指定ts=1000，便于测试排序）
-    save_chat_message(sid, "user", "你好 (Hybrid)")
-    # 2. 写入助手回复（手动指定ts=1001，按时间顺序紧跟用户消息）
-    save_chat_message(sid, "assistant", "你好！我是基于原生 Mongo + LangChain 对象的助手。")
-    # 3. 写入带关联商品的用户消息（手动指定ts=1002，测试item_names字段）
-    save_chat_message(sid, "user", "这个万用表怎么换电池？", item_names=["混合万用表"])
-
-    # 4. 查询指定会话的最近5条记录，验证查询功能
-    print("--- 查询 LangChain 对象记录 ---")
-    messages = get_recent_messages(sid, limit=5)
-    # 打印查询到的记录数量
-    print(f"查询到的记录数: {len(messages)}")
-    # 遍历打印每条记录的详细内容
-    for m in messages:
-        print(f" {m}  ")

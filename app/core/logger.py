@@ -1,15 +1,3 @@
-"""
-项目日志工具类
-基于loguru实现，支持.env配置控制台/文件双输出，自动生成logs/app_年月日.log
-特性：
-1. 配置驱动：通过.env开关输出、修改日志级别
-2. 自动路径：文件日志默认输出到 项目根/logs/app_YYYYMMDD.log
-3. 自动清理：按配置保留日志，自动删除过期文件
-4. 中文友好：utf-8编码，彻底解决中文乱码
-5. 异步安全：开启异步入队，支持多线程/异步场景，避免日志错乱
-6. 开箱即用：项目所有模块直接导入logger即可使用
-7. 位置终极精准：穿透loguru内部+工具类自身，完美显示业务模块实际调用位置
-"""
 import sys
 import inspect
 from pathlib import Path
@@ -101,8 +89,3 @@ def fix_log_position(record):
 
 # 应用终极修复，导出全局可用的logger
 logger = base_logger.patch(fix_log_position)
-
-# -------------------------- 测试代码（验证修复效果） --------------------------
-if __name__ == '__main__':
-    logger.info("【测试】logger.py内部调用（仅测试，业务模块调用会显示正确文件名）")
-    print(f"日志文件输出路径：{LOG_FILE_PATH}")

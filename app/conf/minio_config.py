@@ -3,7 +3,6 @@ from dataclasses import dataclass
 import os
 from dotenv import load_dotenv
 
-# 提前加载.env配置文件（确保os.getenv能获取到MinIO相关配置）
 load_dotenv()
 
 

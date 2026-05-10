@@ -359,32 +359,3 @@ def node_item_name_confirm(state: QueryGraphState) -> QueryGraphState:
     
     logger.info(f"Node: 处理结束, Final State Item Names: {final_state.get('item_names')}")
     return final_state
-
-
-if __name__ == "__main__":
-    # 测试代码块
-    print("\n" + "="*50)
-    print(">>> 启动 node_item_name_confirm 本地测试")
-    print("="*50)
-    
-    # 模拟输入状态
-    mock_state = {
-        "session_id": "test_debug_session_001",
-        "original_query": "HAK 180 烫金机多少钱？",  # 针对用户提到的具体 case
-        "is_stream": False,
-        "item_names": []
-    }
-
-    try:
-        # 运行节点
-        result = node_item_name_confirm(mock_state)
-        
-        print("\n" + "="*50)
-        print(">>> 测试结果摘要:")
-        print(f"Rewritten Query: {result.get('rewritten_query')}")
-        print(f"Item Names: {result.get('item_names')}")
-        print(f"Answer: {result.get('answer')}")
-        print("="*50)
-
-    except Exception as e:
-        logger.exception(f"测试运行期间发生未捕获异常: {e}")
